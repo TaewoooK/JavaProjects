@@ -1,5 +1,4 @@
 package HashInt;
-//import HashInt.HashInt.CountingNumber;
 
 public class HashIntTester {
 
