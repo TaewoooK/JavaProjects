@@ -14,7 +14,6 @@ package HashInt;
   	MUST be the first line in the child constructor method.
   	IF it is not, then a call to the parent class
   	default constructor is done automatically.
-  	
  */
 public class CountingNumber extends HashInt 
 {
