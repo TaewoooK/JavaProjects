@@ -5,7 +5,7 @@ public class Square extends Rectangle{
 	
 	public Square() 
 	{
-		
+		super();
 	}
 	
 	public Square(double side)
@@ -18,5 +18,19 @@ public class Square extends Rectangle{
 		super(other.getLength(), other.getLength());
 	}
 	
+	// Methods inherited from Rectangle
+	// getLength(), getWidth(), toString()
+	// area(), perimeter(), diagonal()
 	
+	// Override toString()
+	public String toString()
+	{
+		return "Side = " + super.getLength();
+	}
+	
+	// Class spectific: getSide()
+	public double getSide()
+	{
+		return super.getLength();
+	}
 }
