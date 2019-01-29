@@ -21,7 +21,7 @@ public class OnlineWidget extends Widget{
 	//copy
 	public OnlineWidget(OnlineWidget other)
 	{
-		super(other);
+		super(other.getName(), other.getDescription(), other.getPrice());
 		this.URL = other.URL;
 	}
 	
@@ -32,8 +32,10 @@ public class OnlineWidget extends Widget{
 	}
 	
 	//equals() - use URL instead of Name/Price
-	public boolean equals(OnlineWidget other)
+	public boolean equals(Object obj)
 	{
+		OnlineWidget other = (OnlineWidget) obj;
+		
 		if(URL.equals(other.URL))
 			return true;
 		return false;
