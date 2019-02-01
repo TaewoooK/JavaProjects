@@ -3,7 +3,7 @@ package ArrayList;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class ArrayListTester {
+public class ArrayListTester{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -70,6 +70,69 @@ public class ArrayListTester {
 		System.out.println("Names: " + Names);
 		System.out.println("We have " + Names.size() + " names.");
 		System.out.println("We changed the name " + person);
+
+		Names.remove(Names.size()-1);
+
+		person = Names.get(0);
+		System.out.println("First Name: " + person);
+
+		person = Names.get(Names.size()-1);
+		System.out.println("Last Name: " + person);	
+		
+		Names.add("Timmy");
+		Names.add(0, "Timmy");
+		Names.add(3, "Timmy");
+		Names.add(3, "Timmy");
+		Names.add(3, "Timmy");
+		Names.add(3, "Timmy");
+		
+		System.out.println("Lots of Timmy!");
+		System.out.println("Names: " + Names);
+		
+		removeAll(Names, "Timmy");
+		System.out.println();
+		System.out.println("No more Timmy!");
+		System.out.println("Names: " + Names);
+
+	}
+
+	// require .equals()
+	public static int find(ArrayList<String> L, String K)
+	{
+		for (int i = 0; i < L.size(); i++)
+			if(L.get(i).equals(K))
+				return i;
+		return -1;
+	}
+
+	// Returns the number of times K is found in list L.
+	public static int countK(ArrayList<String> L, String K)
+	{
+		int c = 0;
+		for (int i = 0; i < L.size(); i++)
+			if(L.get(i).equals(K))
+				c++;
+		return c;
+	}
+
+	public static void removeAll(ArrayList<String> L, String K)
+	{
+		for (int i = 0; i < L.size(); i++)
+			if(L.get(i).equals(K))
+			{
+				L.remove(i);
+				i--;
+			}
+	}
+
+	public static int highest(ArrayList<String> L)
+	{
+		return -1;
+	}
+
+	public static int sort(ArrayList<Integer> L)
+	{
+		return -1;
 	}
 
 }
