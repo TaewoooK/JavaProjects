@@ -78,21 +78,30 @@ public class ArrayListTester{
 
 		person = Names.get(Names.size()-1);
 		System.out.println("Last Name: " + person);	
-		
+
 		Names.add("Timmy");
 		Names.add(0, "Timmy");
 		Names.add(3, "Timmy");
 		Names.add(3, "Timmy");
 		Names.add(3, "Timmy");
 		Names.add(3, "Timmy");
-		
+
 		System.out.println("Lots of Timmy!");
 		System.out.println("Names: " + Names);
-		
+
 		removeAll(Names, "Timmy");
 		System.out.println();
 		System.out.println("No more Timmy!");
 		System.out.println("Names: " + Names);
+		
+		Names.add("Alfred");
+		Names.add("Utrid");
+		Names.add("Aethelfred");
+		Names.add("Pizza");
+		Names.add("Steve");
+		
+		sort(Names);
+		System.out.println(Names);
 
 	}
 
@@ -125,14 +134,53 @@ public class ArrayListTester{
 			}
 	}
 
+	// compareTo()
 	public static int highest(ArrayList<String> L)
 	{
-		return -1;
+		int p = 0;
+		
+		for(int i = 0; i < L.size(); i++)
+			if(L.get(p).compareTo(L.get(i)) > 0)
+				p = i;
+		return p;
 	}
 
-	public static int sort(ArrayList<Integer> L)
+	// sort(), uses Bubble Sort.
+	public static void sort(ArrayList<String> L)
 	{
-		return -1;
+		for(int n = 1; n <= L.size(); n++)
+			for(int i = 0; i < L.size()-1; i++)
+				if(L.get(i).compareTo(L.get(i+1)) > 0)
+					L.set(i, L.set(i+1, L.get(i)));
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
