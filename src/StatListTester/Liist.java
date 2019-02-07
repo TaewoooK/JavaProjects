@@ -1,11 +1,13 @@
 package StatListTester;
 
-public interface Liist {
+public interface Liist<E> {
 	
-	public boolean isEmpty();
-	public boolean add(Object obj);
-	public void add(int p, Object obj);
-	public int size();
-	public Object get(int p);
+	abstract public boolean isEmpty();
+	abstract public boolean add(E obj);
+	abstract public void add(int p, E obj);
+	abstract public int size();
+	abstract public E get(int p);
+	abstract public E set(int p, E obj);
+	abstract public E remove(int p);
 
 }
