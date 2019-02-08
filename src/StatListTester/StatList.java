@@ -11,7 +11,7 @@ public class StatList implements Liist<Double>{
 	{
 		L = new ArrayList<Double>();
 	}
-	
+
 	public String toString()
 	{
 		return L.toString();
@@ -114,13 +114,13 @@ public class StatList implements Liist<Double>{
 			total += L.get(i).doubleValue();
 		return new Double(total);
 	}
-	
+
 	// mean
 	public Double mean()
 	{
 		return new Double((summation().doubleValue())/(double)L.size());
 	}
-	
+
 	// standard deviation
 	// The square root of, the sum of the squares of
 	// the differences between each element and the mean
@@ -128,14 +128,13 @@ public class StatList implements Liist<Double>{
 	public Double standardDeviation()
 	{
 		double sum = 0.0;
-		
 		for(int i = 0; i < L.size(); i++)
 			sum += ((L.get(i) - mean().doubleValue())*(L.get(i) - mean().doubleValue()));
 		sum /= (double)(L.size()-1);
 		sum = Math.sqrt(sum);
 		return new Double(sum);
 	}
-	
+
 	// median (without sorting list L, make a auxiliary list)
 	// max value
 	// min value
