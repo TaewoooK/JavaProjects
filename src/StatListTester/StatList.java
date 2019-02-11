@@ -98,12 +98,12 @@ public class StatList implements Liist<Double>{
 	}
 
 	// sort
-	public void sort()
+	public static void sort(ArrayList<Double> T)
 	{
-		for(int n = 1; n <= L.size(); n++)
-			for(int i = 0; i < L.size()-1; i++)
-				if(L.get(i).compareTo(L.get(i+1)) > 0)
-					L.set(i, L.set(i+1, L.get(i)));
+		for(int n = 1; n <= T.size(); n++)
+			for(int i = 0; i < T.size()-1; i++)
+				if(T.get(i).compareTo(T.get(i+1)) > 0)
+					T.set(i, T.set(i+1, T.get(i)));
 	}
 
 	// summation
@@ -118,7 +118,7 @@ public class StatList implements Liist<Double>{
 	// mean
 	public Double mean()
 	{
-		return new Double((summation().doubleValue())/(double)L.size());
+		return new Double((summation().doubleValue())/L.size());
 	}
 
 	// standard deviation
@@ -130,12 +130,19 @@ public class StatList implements Liist<Double>{
 		double sum = 0.0;
 		for(int i = 0; i < L.size(); i++)
 			sum += ((L.get(i) - mean().doubleValue())*(L.get(i) - mean().doubleValue()));
-		sum /= (double)(L.size()-1);
-		sum = Math.sqrt(sum);
-		return new Double(sum);
+		sum /= (L.size()-1);
+		return new Double(Math.sqrt(sum));
 	}
 
 	// median (without sorting list L, make a auxiliary list)
+	public Double median()
+	{
+		ArrayList<Double> T = new ArrayList<Double>()	;
+		for(int i = 0; i < L.size(); i++)
+			T.add(L.get(i));
+		this.sort(T);
+		return null;
+	}
 	// max value
 	// min value
 

@@ -9,7 +9,7 @@ public class StatListTester {
 		
 		theList.add(new Double(5));
 		theList.add(new Double(20));
-		theList.add(new Double(4));
+		theList.add(new Double(3));
 		theList.add(new Double(15));
 		theList.add(new Double(4));
 		theList.add(new Double(1));
