@@ -31,6 +31,11 @@ public abstract class Pet
 		this.Name = Name;
 	}
 	
+	public String toString()
+	{
+		return "Pet " + this.Name;
+	}
+	
 	public String getName()
 	{
 		return Name;

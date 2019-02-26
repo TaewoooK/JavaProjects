@@ -43,6 +43,19 @@ public class PetTester {
  			abstract method (p.speak()).
 		*/
 		
+		P = new Dog("Otto", 24.5);
+		System.out.println("P: " + P);
+		
+		P = new Cat("Otto", "white");
+		System.out.println("P: " + P);
+		
+		P = new Retriever("Otto", 24.5, "Golden");
+		System.out.println("P: " + P);
+		
+		P = new Chihuahua("Otto", 24.5, 42);
+		System.out.println("P: " + P);
+		
+		
 	}
 
 }

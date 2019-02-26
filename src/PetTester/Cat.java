@@ -10,6 +10,11 @@ public class Cat extends Pet {
 		this.Color = Color;
 	}
 	
+	public String toString()
+	{
+		return super.toString() + " is a " + Color + " cat";
+	}
+	
 	public String getColor()
 	{
 		return Color;

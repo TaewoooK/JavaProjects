@@ -15,6 +15,11 @@ public class Dog extends Pet{
 		this.weight = weight;
 	}
 	
+	public String toString()
+	{
+		return super.toString() + " weighs " + this.weight + " pounds";
+	}
+	
 	public double getWeight()
 	{
 		return weight;
