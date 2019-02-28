@@ -8,10 +8,9 @@ package RentalCar;
 						|
 			|						|
 		CompactCar			       SUV
-	
 */
 
-public class Rental {
+public abstract class Rental {
 
 	private String VIN;
 	private int timePeriod;
@@ -19,6 +18,7 @@ public class Rental {
 	private boolean insured;
 	private int milesDriven;
 	
+	// constructor
 	public Rental(String VIN, int timePeriod, double cost)
 	{
 		this.VIN = VIN;
@@ -28,36 +28,107 @@ public class Rental {
 		this.milesDriven = 0;
 	}
 	
+	// getVIN()
 	public String getVIN()
 	{
 		return VIN;
 	}
 	
+	// getTimePeriod()
 	public int getTimePeriod()
 	{
 		return timePeriod;
 	}
 	
+	// getCost()
 	public double getCost()
 	{
 		return cost;
 	}
 	
+	// getInsured()
 	public boolean getInsured() 
 	{
 		return insured;
 	}
 	
+	// getMilesDriven()
 	public int getMilesDriven()
 	{
 		return milesDriven;
 	}
 	
-	// timePeriod abstract
+	// setTimePeriod
+	public void setTimePeriod(int timePeriod)
+	{
+		this.timePeriod = timePeriod;
+	}
 	
-	// milesDriven abstract
+	// setMilesDriven
+	public void setMilesDriven(int milesDriven)
+	{
+		this.milesDriven = milesDriven;
+	}
 	
-	// cost abstract
+	// setCost
+	public void setCost(double cost)
+	{
+		this.cost = cost;
+	}
+	
+	public void buyInsurance(boolean add)
+	{
+		if (add && !insured)
+		{
+			this.cost *= 1.02;
+			this.insured = true;
+		}
+		if (!add && insured)
+		{
+			this.cost /= 1.02;
+			this.insured = false;
+		}
+	}
+	
+	// rentalDescription();
+	public abstract String rentalDescription();
+	public abstract double getRentalCost(int days, int miles);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
