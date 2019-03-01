@@ -14,8 +14,20 @@ public class CompactCar extends Rental{
 
 	public double getRentalCost(int days, int miles) 
 	{
+		this.setTimePeriod(days);
+		this.setMilesDriven(miles);
 		
-		return 0;
+		double avgMiles, additionalCost;
+		
+		additionalCost = 0;
+		avgMiles = (double)miles / days;
+		
+		if (avgMiles < 120)
+			additionalCost = (miles - 120 * days) + 0.25;
+		
+		this.setCost(this.getCost() * days + additionalCost);
+		
+		return this.getCost();
 	}
 	
 	
