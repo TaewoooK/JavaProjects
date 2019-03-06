@@ -11,8 +11,12 @@ public class PondItem {
 		this.Type = Type;
 	}
 	
+	public Location getLocation()
+	{
+		return this.location;
+	}
 	
-	
+
 	
 	
 }
