@@ -1,6 +1,6 @@
 package FishPond;
 
-public class PondItem {
+public abstract class PondItem {
 
 	private Location location;
 	private String Type;
@@ -11,12 +11,35 @@ public class PondItem {
 		this.Type = Type;
 	}
 	
+	public String toString()
+	{
+		return this.Type + " at " + this.location.toString();
+	}
+	
 	public Location getLocation()
 	{
 		return this.location;
 	}
 	
-
+	// setLocation()
+	public Location setLocation(Location location)
+	{
+		Location oldL = this.location;
+		this.location = location;
+		return oldL;
+	}
+	
+	// getType()
+	public String getType()
+	{
+		return this.Type;
+	}
+	
+	// abstract act()
+	public abstract void act(PondItem[][] M);
+	
+	// abstract move()
+	public abstract void move(PondItem[][] M);
 	
 	
 }

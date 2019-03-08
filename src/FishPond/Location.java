@@ -6,10 +6,15 @@ public class Location {
 	private int x;
 	private int y;
 	
-	public Location(int x, int y)
+	public Location(int y, int x)
 	{
 		this.x = x;
 		this.y = y;
+	}
+	
+	public String toString()
+	{
+		return "(" + this.y + ", " + this.x + ")";
 	}
 	
 	public int getRow()
@@ -20,4 +25,13 @@ public class Location {
 	{
 		return x;
 	}
+	
+	public boolean isValid(PondItem[][] M)
+	{
+		if(this.y >= 0 && this.y < M.length)
+			if(this.x >= 0 && this.x < M[0].length)
+				return true;
+		return false;
+	}
+	
 }
