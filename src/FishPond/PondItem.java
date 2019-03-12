@@ -36,10 +36,10 @@ public abstract class PondItem {
 	}
 	
 	// abstract act()
-	public abstract void act(PondItem[][] M);
+	public abstract void act(Pond P);
 	
 	// abstract move()
-	public abstract void move(PondItem[][] M);
+	public abstract void move(Pond P);
 	
 	
 }

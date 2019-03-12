@@ -17,12 +17,12 @@ public class Fish extends PondItem{
 		return ">))*>";
 	}
 	
-	public void act(PondItem[][] M)
+	public void act(Pond P)
 	{
-		this.move(M);
+		this.move(P);
 	}
 
-	public void move(PondItem[][] M)
+	public void move(Pond P)
 	{
 		
 	}

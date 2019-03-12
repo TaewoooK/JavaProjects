@@ -1,4 +1,8 @@
 package FishPond;
+/*
+	A Fish acts like a fish by moving around the Pond.
+	A Fish
+*/
 
 public class Water extends PondItem{
 
@@ -16,14 +20,16 @@ public class Water extends PondItem{
 	}
 
 	// Water doesn't act
-	public void act(PondItem[][] M) 
+	public void act(Pond P) 
 	{
 		return;
 	}
 
 	// Water doesn't move
-	public void move(PondItem[][] M) 
+	public void move(Pond P) 
 	{
+		
+		
 		return;
 	}
 

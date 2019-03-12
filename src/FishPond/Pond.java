@@ -1,5 +1,7 @@
 package FishPond;
 
+import java.util.ArrayList;
+
 // Matrix of PondItems
 public class Pond{
 
@@ -49,4 +51,22 @@ public class Pond{
 		}
 		return false;
 	}
+	
+	public ArrayList<Location> getNeighboringLocation(Location Loc)
+	{
+		ArrayList<Location> locArr = new ArrayList<Location>();
+		Location T;
+		
+		for(int y = Loc.getRow()-1; y <= Loc.getRow()+1; y++)
+			for(int x = Loc.getCol()-1; x <= Loc.getCol()+1; x++)
+			{
+				T = new Location(y, x);
+				if(T.isValid(thePond) && y != Loc.getRow() && x != Loc.getCol() && thePond[y][x].getType().equals("Water"))
+					locArr.add(thePond[y][x].getLocation());
+			}
+		return locArr;
+	}
+	
+	
+	
 }
