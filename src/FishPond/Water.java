@@ -28,8 +28,6 @@ public class Water extends PondItem{
 	// Water doesn't move
 	public void move(Pond P) 
 	{
-		
-		
 		return;
 	}
 

@@ -13,6 +13,11 @@ public class Pond{
 		this.fillPond();
 	}
 	
+	public PondItem[][] getThePond()
+	{
+		return thePond;
+	}
+	
 	public String toString()
 	{
 		String S = "";
@@ -50,11 +55,9 @@ public class Pond{
 			return true;
 		}
 		return false;
-		//HELLO
-		
 	}
 	
-	public ArrayList<Location> getNeighboringLocation(Location Loc)
+	public ArrayList<Location> getNeighboringLocations(Location Loc)
 	{
 		ArrayList<Location> locArr = new ArrayList<Location>();
 		Location T;
@@ -67,6 +70,13 @@ public class Pond{
 					locArr.add(thePond[y][x].getLocation());
 			}
 		return locArr;
+	}
+	
+	public void allAct()
+	{
+		for(PondItem[] Row: thePond)
+			for(PondItem item: Row)
+				item.act(this);
 	}
 	
 	

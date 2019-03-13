@@ -23,6 +23,9 @@ public class FishPond {
 		System.out.println(P);
 		Thread.sleep(2000);
 		
+		P.allAct();
+		System.out.println(P);
+		Thread.sleep(2000);
 		
 	}
 	
