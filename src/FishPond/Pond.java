@@ -66,14 +66,29 @@ public class Pond{
 			for(int x = Loc.getCol()-1; x <= Loc.getCol()+1; x++)
 			{
 				T = new Location(y, x);
-				if(T.isValid(thePond) && y != Loc.getRow() && x != Loc.getCol() && thePond[y][x].getType().equals("Water"))
+				if(T.isValid(thePond) && thePond[y][x].getType().equals("Water"))
 					locArr.add(thePond[y][x].getLocation());
 			}
 		return locArr;
 	}
 	
+	public ArrayList<PondItem> getAllObject()
+	{
+		ArrayList<PondItem> everybody = new ArrayList<PondItem>();
+		
+		for(int i = 0; i < this.getNumRows(); i++)
+			for(int j = 0; j < this.getNumCols(); j++)
+				if(!(thePond[i][j].getType().equals("Water")))
+					everybody.add(thePond[i][j]);
+		return everybody;
+	}
+	
 	public void allAct()
 	{
+		for(PondItem[] Row: thePond)
+			for(PondItem item: Row)
+				item.setActed(false);
+		
 		for(PondItem[] Row: thePond)
 			for(PondItem item: Row)
 				item.act(this);

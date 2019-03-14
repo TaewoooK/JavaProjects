@@ -17,6 +17,13 @@ public class Location {
 		return "(" + this.y + ", " + this.x + ")";
 	}
 	
+	public boolean equals(Object obj)
+	{
+		Location other = (Location) obj;
+		
+		return this.y == other.y && this.x == other.x;
+	}
+	
 	public int getRow()
 	{
 		return y;

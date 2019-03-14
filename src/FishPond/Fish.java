@@ -21,7 +21,9 @@ public class Fish extends PondItem{
 	
 	public void act(Pond P)
 	{
-		this.move(P);
+		if(!this.getActed())
+			this.move(P);
+		this.setActed(true);
 	}
 
 	public void move(Pond P)
@@ -38,8 +40,6 @@ public class Fish extends PondItem{
 		P.dropInPond(new Water(this.getLocation()));
 		this.setLocation(newLoc);
 		P.dropInPond(this);
-		
-
 	}
 
 	

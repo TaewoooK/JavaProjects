@@ -4,11 +4,13 @@ public abstract class PondItem {
 
 	private Location location;
 	private String Type;
+	private boolean acted;
 	
 	public PondItem(Location location, String Type)
 	{
 		this.location = location;
 		this.Type = Type;
+		acted = false;
 	}
 	
 	public String toString()
@@ -33,6 +35,16 @@ public abstract class PondItem {
 	public String getType()
 	{
 		return this.Type;
+	}
+	
+	public boolean getActed()
+	{
+		return acted;
+	}
+	
+	public void setActed(boolean acted)
+	{
+		this.acted = acted;
 	}
 	
 	// abstract act()
