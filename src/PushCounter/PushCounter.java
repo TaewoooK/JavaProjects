@@ -13,6 +13,7 @@ public class PushCounter extends JApplet{
 	private JLabel label;
 	private JButton push;
 	
+	private JFrame frame;
 	// Set up the GUI
 	public void init()
 	{
@@ -21,6 +22,9 @@ public class PushCounter extends JApplet{
 		push.addActionListener(new ButtonListener());
 		
 		label = new JLabel("Pushes: " + Integer.toString(pushes));
+		
+		frame = new JFrame();
+		frame.setResizable(false);
 		
 		Container cp = getContentPane();
 		cp.setBackground(Color.cyan);
@@ -35,6 +39,7 @@ public class PushCounter extends JApplet{
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			String theButton = event.getActionCommand();
 			pushes++;
 			label.setText("Pushes: " + Integer.toString(pushes));
 			repaint();
