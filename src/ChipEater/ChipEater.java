@@ -2,28 +2,33 @@ package ChipEater;
 
 import java.awt.*;
 import java.awt.event.*;
+
+import javax.swing.JOptionPane;
+
 import java.applet.*;
 
 
 public class ChipEater extends Applet implements ActionListener, ItemListener{
-	
-	private final int apWidth = 320;
-	private final int apHeight = 320;
-	private final int min = 20;
 
-	private Frame sWindow;
+	private static final long serialVersionUID = 1L;
 
 	private Image doritos;
 	private Checkbox doritosBox;
+	private Image dChip;
 	private Image lays;
 	private Checkbox laysBox;
+	private Image lChip;
 	private Image veggie;
 	private Checkbox veggieBox;
-	private Image joyel;
-
-	private Image dChip;
-	private Image lChip;
 	private Image vStick;
+	private Image joyel;
+	
+	private Image flamHot;
+	private Image flamChip;
+	private Image sun;
+	private Image sunChip;
+	private Image baked;
+	private Image bakedChip;
 
 	private Button eat;
 	private Button close;
@@ -35,12 +40,11 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 
 	private Button goChip;
 	private Button shop;
-	private Button closeShop;
 
 	private Image chipLabel;
 	private Image selChip;
 	private Image border;
-	
+
 	private Label mlabel;
 	String chip = "";
 	String max = "";
@@ -60,20 +64,21 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	Image[] fat = new Image[7];
 	int i = 0;
 
-	int money = 0;
+	double chip1 = 3;
+	double chip2 = 3;
+	double chip3 = 1;
+
+	int money = 500;
+	int reply = 0;
+	int upgrade = 0;
+	double funds = 50;
 	
+	String newChip1 = "Doritos";
+	String newChip2 = "Lays";
+	String newChip3 = "Veggie Straws";
+
 	public void init()
 	{ 
-		closeShop = new Button();
-		closeShop.setLabel("Close");
-		
-		sWindow = new Frame("A Pop Up Window");
-		sWindow.setSize(new Dimension(250, 500));
-		closeShop.setBounds(0, 30, 30, 60);
-		sWindow.add(closeShop);
-		
-		closeShop.addActionListener(this);
-		
 		fat[0] = getImage(getDocumentBase(), "B1.png");
 		fat[1] = getImage(getDocumentBase(), "B2.png");
 		fat[2] = getImage(getDocumentBase(), "B3.png");
@@ -90,8 +95,6 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 
 		this.setSize(new Dimension(650, 450));
 
-		// add(help);
-		// add(quit);
 		good = new Font("Elephant", Font.BOLD, 18);
 
 		chipLabel = getImage(getDocumentBase(), "Chips Label.png");
@@ -114,10 +117,10 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		add(goChip);
 
 		shop = new Button();
-		shop.setLabel("SHOP");
+		shop.setLabel("UPGRADE");
 		shop.addActionListener(this);
 		add(shop);
-		
+
 		joyel = getImage(getDocumentBase(), "joyel.png");
 		joyelEat = getImage(getDocumentBase(), "joyelOpen.png");
 
@@ -128,22 +131,30 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		vStick = getImage(getDocumentBase(), "vStick.png");
 
 		doritos = getImage(getDocumentBase(), "doritos.png");
-		doritosBox = new Checkbox("Doritos", checkGroup, false);
+		doritosBox = new Checkbox("Choice 1", checkGroup, false);
 		add(doritosBox);		
 		doritosBox.addItemListener(this);
 
 		lays = getImage(getDocumentBase(), "lays.png");
-		laysBox = new Checkbox("Lays", checkGroup, false);
+		laysBox = new Checkbox("Choice 2", checkGroup, false);
 		add(laysBox);
 		laysBox.addItemListener(this);
 
 		veggie = getImage(getDocumentBase(), "veggie.png");
-		veggieBox = new Checkbox("Veggie Straws", checkGroup, false);
+		veggieBox = new Checkbox("Choice 3", checkGroup, false);
 		add(veggieBox);
 		veggieBox.addItemListener(this);
 		
+		flamHot = getImage(getDocumentBase(), "flamHot1.png");
+		flamChip = getImage(getDocumentBase(), "flamChip.png");
+		
+		sun = getImage(getDocumentBase(), "sun.png");
+		sunChip = getImage(getDocumentBase(), "sunChip.png");
+		
+		baked = getImage(getDocumentBase(), "baked.png");
+		bakedChip = getImage(getDocumentBase(), "bakedChip.png");
+
 		mlabel = new Label("" + money);
-		mlabel.setText(String.valueOf(money));
 		add(mlabel);
 	}
 
@@ -151,17 +162,74 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	{
 		if(e.getSource() == shop)
 		{
-			sWindow.show();
-		}
-		
-		if(e.getSource() == closeShop)
-		{
-			sWindow.hide();
+			if(funds <= money)
+			{
+				reply = JOptionPane.showConfirmDialog(null, "Do you use $" + funds + " to upgrade?", "Upgrade", JOptionPane.YES_NO_OPTION);
+
+				if (reply == JOptionPane.YES_OPTION) 
+				{
+					JOptionPane.showMessageDialog(null, "Upgraded");
+					upgrade++;
+					money -= funds;
+					funds *= 1.5;
+					if(upgrade == 3)
+					{
+						chip3 += 1;
+						upgrade = 0;
+						veggie = baked;
+						newChip3 = "Lays Baked";
+						vStick = bakedChip;
+					}
+					else if(upgrade == 2)
+					{
+						chip2 += 3;
+						lays = sun;
+						newChip2 = "SunChips";
+						lChip = sunChip;
+					}
+					else
+					{
+						chip1 += 3;
+						doritos = flamHot;
+						newChip1 = "Flamming Hot Cheetos";
+						dChip = flamChip;
+					}
+					repaint();
+				}
+
+				else 
+				{
+					JOptionPane.showMessageDialog(null, "We hope to see you again.");
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Insufficient Funds. You need " + funds + " to upgrade chips");
+			}
 		}
 
 		if(e.getSource() == eat)
 		{	
 			joyel = joyelEat;
+
+			if(checkGroup.getSelectedCheckbox() == doritosBox)
+			{
+				dChipShow = true;
+				repaint();
+			}
+
+			if(checkGroup.getSelectedCheckbox() == laysBox)
+			{
+				lChipShow = true;
+				repaint();
+			}
+
+			if(checkGroup.getSelectedCheckbox() == veggieBox )
+			{
+				vStickShow = true;
+				repaint();
+			}
+
 			repaint();
 		}
 
@@ -175,7 +243,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 				dChipShow = false;
 				if(i < 6)
 					i++;
-				money+=3;
+				money+=chip1;
 				repaint();
 			}
 
@@ -185,7 +253,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 				lChipShow = false;
 				if(i < 6)
 					i++;
-				money+=3;
+				money+=chip2;
 				repaint();
 			}
 
@@ -195,7 +263,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 				vStickShow = false;
 				if(i > 0)
 					i--;
-				money+=1;
+				money+=chip3;
 				repaint();
 			}
 
@@ -233,7 +301,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		{
 			if(chipLocX != 200)
 				chipLocX = 200;
-			chip = "Doritos";
+			chip = newChip1;
 			dChipShow = true;
 			lChipShow = false;
 			vStickShow = false;
@@ -244,7 +312,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		{
 			if(chipLocX != 200)
 				chipLocX = 200;
-			chip = "Lays";
+			chip = newChip2;
 			lChipShow = true;
 			dChipShow = false;
 			vStickShow = false;
@@ -255,7 +323,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		{
 			if(chipLocX != 200)
 				chipLocX = 200;
-			chip = "Veggie Straws";
+			chip = newChip3;
 			vStickShow = true;
 			dChipShow = false;
 			lChipShow = false;
@@ -292,10 +360,10 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		doritosBox.setLocation(72, 140);
 
 		g.drawImage(lays, 62, 170, this);  
-		laysBox.setLocation(77, 240);
+		laysBox.setLocation(72, 240);
 
 		g.drawImage(veggie, 72, 270, this);  
-		veggieBox.setLocation(60, 350);
+		veggieBox.setLocation(68, 350);
 
 		if(dChipShow == true)
 		{
@@ -335,20 +403,14 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		}
 
 		mlabel.setText(String.valueOf(money));
-		mlabel.setSize(30, 30);
+		mlabel.setSize(50, 30);
 		mlabel.setFont(good);
-		mlabel.setLocation(570, 390);
-		
-		shop.setSize(75, 50);
+		mlabel.setLocation(550, 390);
+
+		shop.setSize(95, 50);
 		shop.setFont(good);
-		shop.setLocation(65, 385);
-		
+		shop.setLocation(56, 385);
+
 	}  
-	
-	public void waitEat() throws InterruptedException
-	{
-		Thread.sleep(500);
-	}
-	
-	
+
 }
