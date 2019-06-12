@@ -6,15 +6,12 @@ import java.applet.*;
 
 
 public class ChipEater extends Applet implements ActionListener, ItemListener{
-
 	
 	private final int apWidth = 320;
 	private final int apHeight = 320;
 	private final int min = 20;
 
-	private Button start;
-	private Button help;
-	private Button quit;
+	private Frame sWindow;
 
 	private Image doritos;
 	private Checkbox doritosBox;
@@ -38,6 +35,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 
 	private Button goChip;
 	private Button shop;
+	private Button closeShop;
 
 	private Image chipLabel;
 	private Image selChip;
@@ -66,6 +64,16 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	
 	public void init()
 	{ 
+		closeShop = new Button();
+		closeShop.setLabel("Close");
+		
+		sWindow = new Frame("A Pop Up Window");
+		sWindow.setSize(new Dimension(250, 500));
+		closeShop.setBounds(0, 30, 30, 60);
+		sWindow.add(closeShop);
+		
+		closeShop.addActionListener(this);
+		
 		fat[0] = getImage(getDocumentBase(), "B1.png");
 		fat[1] = getImage(getDocumentBase(), "B2.png");
 		fat[2] = getImage(getDocumentBase(), "B3.png");
@@ -141,6 +149,15 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 
 	public void actionPerformed(ActionEvent e) 
 	{
+		if(e.getSource() == shop)
+		{
+			sWindow.show();
+		}
+		
+		if(e.getSource() == closeShop)
+		{
+			sWindow.hide();
+		}
 
 		if(e.getSource() == eat)
 		{	
@@ -325,10 +342,9 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		shop.setSize(75, 50);
 		shop.setFont(good);
 		shop.setLocation(65, 385);
-
 		
 	}  
-
+	
 	public void waitEat() throws InterruptedException
 	{
 		Thread.sleep(500);
