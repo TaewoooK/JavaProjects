@@ -68,7 +68,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	double chip2 = 3;
 	double chip3 = 1;
 
-	int money = 500;
+	int money = 0;
 	int reply = 0;
 	int upgrade = 0;
 	double funds = 50;
