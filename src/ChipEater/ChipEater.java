@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import java.applet.*;
 
-
 public class ChipEater extends Applet implements ActionListener, ItemListener{
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +21,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	private Checkbox veggieBox;
 	private Image vStick;
 	private Image joyel;
-	
+
 	private Image flamHot;
 	private Image flamChip;
 	private Image sun;
@@ -45,6 +44,7 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	private Image selChip;
 	private Image border;
 
+	private Label moneyL;
 	private Label mlabel;
 	String chip = "";
 	String max = "";
@@ -68,17 +68,20 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 	double chip2 = 3;
 	double chip3 = 1;
 
-	int money = 0;
+	int money = 1000;
 	int reply = 0;
 	int upgrade = 0;
 	double funds = 50;
-	
+
+	int end = 0;
+
 	String newChip1 = "Doritos";
 	String newChip2 = "Lays";
 	String newChip3 = "Veggie Straws";
 
 	public void init()
 	{ 
+
 		fat[0] = getImage(getDocumentBase(), "B1.png");
 		fat[1] = getImage(getDocumentBase(), "B2.png");
 		fat[2] = getImage(getDocumentBase(), "B3.png");
@@ -144,18 +147,21 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		veggieBox = new Checkbox("Choice 3", checkGroup, false);
 		add(veggieBox);
 		veggieBox.addItemListener(this);
-		
+
 		flamHot = getImage(getDocumentBase(), "flamHot1.png");
 		flamChip = getImage(getDocumentBase(), "flamChip.png");
-		
+
 		sun = getImage(getDocumentBase(), "sun.png");
 		sunChip = getImage(getDocumentBase(), "sunChip.png");
-		
+
 		baked = getImage(getDocumentBase(), "baked.png");
 		bakedChip = getImage(getDocumentBase(), "bakedChip.png");
 
 		mlabel = new Label("" + money);
 		add(mlabel);
+
+		moneyL = new Label("$");
+		add(moneyL);
 	}
 
 	public void actionPerformed(ActionEvent e) 
@@ -164,42 +170,50 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		{
 			if(funds <= money)
 			{
-				reply = JOptionPane.showConfirmDialog(null, "Do you use $" + funds + " to upgrade?", "Upgrade", JOptionPane.YES_NO_OPTION);
-
-				if (reply == JOptionPane.YES_OPTION) 
+				if(end == 1)
+					reply = JOptionPane.showConfirmDialog(null, "You have upgraded fully. Please pay for the full game to continue");
+				else
 				{
-					JOptionPane.showMessageDialog(null, "Upgraded");
-					upgrade++;
-					money -= funds;
-					funds *= 1.5;
-					if(upgrade == 3)
-					{
-						chip3 += 1;
-						upgrade = 0;
-						veggie = baked;
-						newChip3 = "Lays Baked";
-						vStick = bakedChip;
-					}
-					else if(upgrade == 2)
-					{
-						chip2 += 3;
-						lays = sun;
-						newChip2 = "SunChips";
-						lChip = sunChip;
-					}
-					else
-					{
-						chip1 += 3;
-						doritos = flamHot;
-						newChip1 = "Flamming Hot Cheetos";
-						dChip = flamChip;
-					}
-					repaint();
-				}
+					reply = JOptionPane.showConfirmDialog(null, "Do you use $" + funds + " to upgrade?", "Upgrade", JOptionPane.YES_NO_OPTION);
 
-				else 
-				{
-					JOptionPane.showMessageDialog(null, "We hope to see you again.");
+					if (reply == JOptionPane.YES_OPTION) 
+					{
+						JOptionPane.showMessageDialog(null, "Upgraded");
+						upgrade++;
+						money -= funds;
+						funds *= 1.5;
+						if(upgrade == 3)
+						{
+							chip3 += 1;
+							upgrade = 0;
+							end = 1;
+							veggie = baked;
+							newChip3 = "Lays Baked";
+							vStick = bakedChip;
+							repaint();
+						}
+						else if(upgrade == 2)
+						{
+							chip2 += 3;
+							lays = sun;
+							newChip2 = "SunChips";
+							lChip = sunChip;
+							repaint();
+						}
+						else
+						{
+							chip1 += 3;
+							doritos = flamHot;
+							newChip1 = "Flamming Hot Cheetos";
+							dChip = flamChip;
+							repaint();
+						}
+
+					}
+					else 
+					{
+						JOptionPane.showMessageDialog(null, "We hope to see you again.");
+					}
 				}
 			}
 			else
@@ -406,6 +420,10 @@ public class ChipEater extends Applet implements ActionListener, ItemListener{
 		mlabel.setSize(50, 30);
 		mlabel.setFont(good);
 		mlabel.setLocation(550, 390);
+
+		moneyL.setSize(50, 30);
+		mlabel.setFont(good);
+		moneyL.setLocation(540, 390);
 
 		shop.setSize(95, 50);
 		shop.setFont(good);
